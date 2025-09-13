@@ -1,5 +1,3 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
-
 part of 'video_data.dart';
 
 // **************************************************************************
@@ -41,7 +39,7 @@ class VideoDataAdapter extends TypeAdapter<VideoData> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is VideoDataAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
+          other is VideoDataAdapter &&
+              runtimeType == other.runtimeType &&
+              typeId == other.typeId;
 }

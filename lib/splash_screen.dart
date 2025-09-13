@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'auth_gate.dart'; // ReelsPage की जगह AuthGate को import करें
+import 'auth_gate.dart'; // Import AuthGate instead of ReelsPage
 
+// A stateful widget for the splash screen.
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -11,24 +12,30 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
+  // Animation controller for managing animations.
   late AnimationController _controller;
+  // Animation for the fade-in effect.
   late Animation<double> _fadeAnimation;
+  // Animation for the scaling effect.
   late Animation<double> _scaleAnimation;
 
   @override
   void initState() {
     super.initState();
 
+    // Initialize the animation controller with a 2-second duration.
     _controller = AnimationController(
       duration: const Duration(seconds: 2),
       vsync: this,
     );
 
+    // Define the fade animation curve.
     _fadeAnimation = CurvedAnimation(
       parent: _controller,
       curve: Curves.easeIn,
     );
 
+    // Define the scale animation from 0.5 to 1.0.
     _scaleAnimation = Tween<double>(begin: 0.5, end: 1.0).animate(
       CurvedAnimation(
         parent: _controller,
@@ -36,15 +43,20 @@ class _SplashScreenState extends State<SplashScreen>
       ),
     );
 
+    // Start the animations.
     _controller.forward();
 
+    // Add a listener to the animation status.
     _controller.addStatusListener((status) {
+      // When the animation is complete, navigate to the next screen.
       if (status == AnimationStatus.completed) {
         Timer(const Duration(milliseconds: 500), () {
+          // Replace the current screen with the AuthGate.
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
-              // ## YAHAN BADLAV KIYA GAYA HAI ##
-              // ReelsPage की जगह अब AuthGate पर जाएगा
+              // ## CHANGE MADE HERE ##
+              // Navigate to AuthGate, which will decide whether to show
+              // the LoginScreen or ReelsPage based on auth state.
               builder: (context) => const AuthGate(),
             ),
           );
@@ -55,6 +67,7 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   void dispose() {
+    // Dispose the animation controller to free up resources.
     _controller.dispose();
     super.dispose();
   }
@@ -63,6 +76,7 @@ class _SplashScreenState extends State<SplashScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        // Apply a gradient background.
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [Color(0xFF2c3e50), Color(0xFF000000)],
@@ -74,6 +88,7 @@ class _SplashScreenState extends State<SplashScreen>
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // Apply scale and fade transitions to the logo.
               ScaleTransition(
                 scale: _scaleAnimation,
                 child: FadeTransition(
@@ -96,6 +111,7 @@ class _SplashScreenState extends State<SplashScreen>
                         ),
                       ],
                     ),
+                    // Display the app logo.
                     child: ClipOval(
                       child: Image.asset(
                         'assets/images/img.png',
@@ -106,6 +122,7 @@ class _SplashScreenState extends State<SplashScreen>
                 ),
               ),
               const SizedBox(height: 20),
+              // Apply fade transition to the app title.
               FadeTransition(
                 opacity: _fadeAnimation,
                 child: const Text(
@@ -119,6 +136,7 @@ class _SplashScreenState extends State<SplashScreen>
                 ),
               ),
               const SizedBox(height: 40),
+              // Apply fade transition to the progress indicator.
               FadeTransition(
                 opacity: _fadeAnimation,
                 child: const CircularProgressIndicator(
