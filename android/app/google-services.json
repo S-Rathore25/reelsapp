@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "264952142675",
+    "project_id": "reelsgellery",
+    "storage_bucket": "reelsgellery.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:264952142675:android:d7b7352bbe63584ec19fa6",
+        "android_client_info": {
+          "package_name": "com.example.reelgallry"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDW5idmx37Kfn5dfh2wGfpztawATIB7laI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
